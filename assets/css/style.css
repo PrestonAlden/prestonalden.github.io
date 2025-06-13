@@ -297,8 +297,13 @@ a:hover {
   }
 
   .toggle-wrapper {
-    display: none;
-  }
+  display: block;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+}
+
 
   .main-content {
     margin-left: 0;
