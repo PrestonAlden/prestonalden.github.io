@@ -284,13 +284,24 @@ a:hover {
 
 /* ===== Responsive Styles ===== */
 @media (max-width: 768px) {
-  /* Sidebar becomes top block */
+  /* Sidebar becomes fixed off-canvas */
   .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: #222;
     padding: 1rem;
-    transform: none !important;
+    box-sizing: border-box;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 500;
+  }
+
+  body.sidebar-collapsed .sidebar {
+    transform: translateX(-100%);
   }
 
   /* Main content fills screen */
@@ -299,9 +310,22 @@ a:hover {
     padding: 1rem;
   }
 
-  /* Hide toggle button for now on phone */
+  /* Toggle button always visible on phone */
   .toggle-wrapper {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+  }
+
+  .toggle-button {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    background: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
   }
 
   /* Projects stack vertically */
