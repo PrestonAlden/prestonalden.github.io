@@ -284,33 +284,27 @@ a:hover {
 
 /* ===== Responsive Styles ===== */
 @media (max-width: 768px) {
-  /* Sidebar adapts to top block */
+  /* Sidebar becomes top block */
   .sidebar {
     position: relative;
     width: 100%;
     height: auto;
     padding: 1rem;
+    transform: none !important;
   }
 
-  body.sidebar-collapsed .sidebar {
-    transform: translateX(0);
-  }
-
-  .toggle-wrapper {
-  display: block;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1001;
-}
-
-
+  /* Main content fills screen */
   .main-content {
     margin-left: 0;
     padding: 1rem;
   }
 
-  /* Project stack vertical */
+  /* Hide toggle button for now on phone */
+  .toggle-wrapper {
+    display: none;
+  }
+
+  /* Projects stack vertically */
   .project {
     flex-direction: column;
     align-items: center;
@@ -321,17 +315,11 @@ a:hover {
     max-width: 500px;
   }
 
-  .project div {
-    text-align: left;
-    width: 100%;
-  }
-
   /* Image grid single column */
   .image-grid li {
     width: 100%;
   }
 
-  /* Project 3 grid single column */
   .project3-grid li {
     width: 100%;
   }
