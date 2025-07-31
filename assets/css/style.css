@@ -33,6 +33,27 @@ body.sidebar-collapsed .sidebar {
   margin: 0.5rem 0;
 }
 
+/* ===== Resume Download Button ===== */
+.resume-download {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.resume-button {
+  display: inline-block;
+  background-color: #444;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.resume-button:hover {
+  background-color: #666;
+}
+
 /* ===== Toggle Button ===== */
 .toggle-wrapper {
   position: fixed;
@@ -253,6 +274,12 @@ a:hover {
   text-align: center;
 }
 
+.image-grid.labeled-grid li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ===== Full Width Figure ===== */
 .full-width-figure {
   width: 100%;
@@ -276,25 +303,11 @@ a:hover {
   text-align: center;
 }
 
-.image-grid.labeled-grid li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* ===== Responsive Styles ===== */
 @media (max-width: 768px) {
-  /* Sidebar becomes fixed off-canvas */
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 80%;
     max-width: 300px;
-    height: 100vh;
-    background: #222;
-    padding: 1rem;
-    box-sizing: border-box;
     transform: translateX(0);
     transition: transform 0.3s ease;
     z-index: 500;
@@ -304,13 +317,11 @@ a:hover {
     transform: translateX(-100%);
   }
 
-  /* Main content fills screen */
   .main-content {
     margin-left: 0;
     padding: 1rem;
   }
 
-  /* Toggle button always visible on phone */
   .toggle-wrapper {
     display: block;
     position: fixed;
@@ -328,7 +339,6 @@ a:hover {
     cursor: pointer;
   }
 
-  /* Projects stack vertically */
   .project {
     flex-direction: column;
     align-items: center;
@@ -339,7 +349,6 @@ a:hover {
     max-width: 500px;
   }
 
-  /* Image grid single column */
   .image-grid li {
     width: 100%;
   }
@@ -348,7 +357,6 @@ a:hover {
     width: 100%;
   }
 
-  /* Video embed full width */
   .video-embed iframe {
     width: 100%;
     height: auto;
@@ -357,4 +365,20 @@ a:hover {
   .full-width-figure img {
     width: 95%;
   }
+
+  .resume-download {
+  margin-top: 1rem;
+  display: block;
+  text-align: left;
 }
+
+.sidebar-bottom {
+  display: block;
+  text-align: left;
+}
+
+
+}
+
+
+
