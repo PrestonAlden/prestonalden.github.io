@@ -196,12 +196,13 @@ footer {
   gap: 1rem;
   margin-top: 0.75rem;
   align-items: flex-start;
-  justify-content: center;
 
+  /* left-justified block */
   width: 40%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 0;
+  margin-right: 0;
 }
+
 
 .media-image-row img {
   width: 50%;
