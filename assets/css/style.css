@@ -29,7 +29,9 @@ body.sidebar-collapsed .sidebar {
   transform: translateX(-100%);
 }
 
-.sidebar h1, .sidebar h2, .sidebar h3 {
+.sidebar h1,
+.sidebar h2,
+.sidebar h3 {
   margin: 0.5rem 0;
 }
 
@@ -82,6 +84,7 @@ body.sidebar-collapsed .toggle-wrapper {
   padding: 2rem;
   transition: margin-left 0.3s ease;
   flex-grow: 1;
+  min-width: 0; /* important: allow content to shrink in flex layouts */
 }
 
 body.sidebar-collapsed .main-content {
@@ -94,6 +97,7 @@ body.sidebar-collapsed .main-content {
   flex-direction: row-reverse;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap; /* important: if space gets tight, allow wrapping instead of crushing text */
 }
 
 .project img {
@@ -101,13 +105,18 @@ body.sidebar-collapsed .main-content {
   height: auto;
   object-fit: contain;
   border: 1px solid #ccc;
-  flex-shrink: 0;
+
+  /* IMPORTANT FIX:
+     Remove flex-shrink:0 so the image can shrink when the page gets narrower/zoomed. */
+  flex: 0 1 40%;
   align-self: flex-start;
+  max-width: 40%;
 }
 
 .project div {
   text-align: left;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0; /* important: prevents flex item from forcing overflow */
 }
 
 .project-divider {
@@ -340,6 +349,7 @@ a:hover {
     transform: translateX(-100%);
   }
 
+  /* Keep the gap to the right of the sidebar (prevents underlap) */
   .main-content {
     margin-left: 250px;
     padding: 1rem;
@@ -414,62 +424,3 @@ a:hover {
     width: 100%;
   }
 }
-:root{
-  --sidebar-w: 280px;   /* set your actual sidebar width */
-  --sidebar-gap: 24px;  /* the breathing room between sidebar and content */
-}
-
-/* Sidebar fixed on the left */
-.sidebar,
-#sidebar,
-.left-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: var(--sidebar-w);
-  overflow-y: auto;
-  z-index: 1000;
-}
-
-/* Force the entire page content to start AFTER the sidebar */
-main,
-.main,
-#main,
-.content,
-.page-content,
-.body-content {
-  margin-left: calc(var(--sidebar-w) + var(--sidebar-gap)) !important;
-  min-width: 0;
-}
-
-/* If you have sections that aren't inside main/content, this catches them too */
-section,
-.project-section,
-#project1,
-#project-1,
-.projects,
-#projects {
-  scroll-margin-left: calc(var(--sidebar-w) + var(--sidebar-gap));
-}
-
-/* Mobile: sidebar becomes top bar or collapses */
-@media (max-width: 900px){
-  .sidebar,
-  #sidebar,
-  .left-sidebar{
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  main,
-  .main,
-  #main,
-  .content,
-  .page-content,
-  .body-content{
-    margin-left: 0 !important;
-  }
-}
-
