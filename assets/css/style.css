@@ -414,3 +414,62 @@ a:hover {
     width: 100%;
   }
 }
+:root{
+  --sidebar-w: 280px;   /* set your actual sidebar width */
+  --sidebar-gap: 24px;  /* the breathing room between sidebar and content */
+}
+
+/* Sidebar fixed on the left */
+.sidebar,
+#sidebar,
+.left-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-w);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Force the entire page content to start AFTER the sidebar */
+main,
+.main,
+#main,
+.content,
+.page-content,
+.body-content {
+  margin-left: calc(var(--sidebar-w) + var(--sidebar-gap)) !important;
+  min-width: 0;
+}
+
+/* If you have sections that aren't inside main/content, this catches them too */
+section,
+.project-section,
+#project1,
+#project-1,
+.projects,
+#projects {
+  scroll-margin-left: calc(var(--sidebar-w) + var(--sidebar-gap));
+}
+
+/* Mobile: sidebar becomes top bar or collapses */
+@media (max-width: 900px){
+  .sidebar,
+  #sidebar,
+  .left-sidebar{
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  main,
+  .main,
+  #main,
+  .content,
+  .page-content,
+  .body-content{
+    margin-left: 0 !important;
+  }
+}
+
