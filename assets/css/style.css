@@ -1,7 +1,4 @@
-/* ========================================================= */
-/* ====================== BASE STYLES ====================== */
-/* ========================================================= */
-
+/* ===== Base Styles ===== */
 body {
   margin: 0;
   font-family: sans-serif;
@@ -13,10 +10,7 @@ body {
   display: flex;
 }
 
-/* ========================================================= */
-/* ======================== SIDEBAR ======================== */
-/* ========================================================= */
-
+/* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -35,25 +29,32 @@ body.sidebar-collapsed .sidebar {
   transform: translateX(-100%);
 }
 
-.sidebar h1,
-.sidebar h2,
-.sidebar h3 {
+.sidebar h1, .sidebar h2, .sidebar h3 {
   margin: 0.5rem 0;
 }
 
-.sidebar a {
-  color: #9ecbff;
+/* ===== Resume Download Button ===== */
+.resume-download {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.resume-button {
+  display: inline-block;
+  background-color: #444;
+  color: white;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
-.sidebar a:hover {
-  text-decoration: underline;
+.resume-button:hover {
+  background-color: #666;
 }
 
-/* ========================================================= */
-/* ===================== TOGGLE BUTTON ===================== */
-/* ========================================================= */
-
+/* ===== Toggle Button ===== */
 .toggle-wrapper {
   position: fixed;
   top: 1.4rem;
@@ -75,10 +76,7 @@ body.sidebar-collapsed .toggle-wrapper {
   cursor: pointer;
 }
 
-/* ========================================================= */
-/* ===================== MAIN CONTENT ====================== */
-/* ========================================================= */
-
+/* ===== Main Content ===== */
 .main-content {
   margin-left: 250px;
   padding: 2rem;
@@ -90,31 +88,7 @@ body.sidebar-collapsed .main-content {
   margin-left: 0;
 }
 
-/* ========================================================= */
-/* ======================== INTRO ========================== */
-/* ========================================================= */
-
-.intro {
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(34, 34, 34, 0.2);
-}
-
-.intro h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.intro p {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.5;
-}
-
-/* ========================================================= */
-/* ======================= PROJECTS ======================== */
-/* ========================================================= */
-
+/* ===== Project Section ===== */
 .project {
   display: flex;
   flex-direction: row-reverse;
@@ -132,8 +106,8 @@ body.sidebar-collapsed .main-content {
 }
 
 .project div {
-  flex: 1;
   text-align: left;
+  flex: 1;
 }
 
 .project-divider {
@@ -144,10 +118,15 @@ body.sidebar-collapsed .main-content {
   border-radius: 1px;
 }
 
-/* ========================================================= */
-/* ===================== LINK DROPDOWNS ==================== */
-/* ========================================================= */
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
 
+/* ===== Link Dropdown ===== */
 .link-dropdown {
   margin-top: 1rem;
   border-radius: 6px;
@@ -160,6 +139,7 @@ body.sidebar-collapsed .main-content {
   padding: 0.75rem 1rem 0.75rem 1.9rem;
   cursor: pointer;
   font-weight: bold;
+  background-color: #eaeaea;
   list-style: none;
 }
 
@@ -183,10 +163,6 @@ body.sidebar-collapsed .main-content {
   list-style: none;
 }
 
-/* ========================================================= */
-/* ====================== IMAGE GRIDS ====================== */
-/* ========================================================= */
-
 .image-grid {
   display: flex;
   flex-wrap: wrap;
@@ -204,51 +180,30 @@ body.sidebar-collapsed .main-content {
   border: 1px solid #ccc;
 }
 
-/* ========================================================= */
-/* ========== MEDIA INTERVIEWS / MAGAZINE IMAGES ============ */
-/* ========================================================= */
-
-/* Container holds BOTH images at 60% width total */
+/* ===== Media Coverage (Project 1) ===== */
+/* Both magazine images together take up 40% of the content width on desktop */
 .media-image-row {
   display: flex;
-  justify-content: center;
   gap: 1rem;
   margin-top: 0.75rem;
+  align-items: flex-start;
+  justify-content: center;
 
-  width: 60%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Each image gets half of that 60% */
 .media-image-row img {
   width: 50%;
   height: auto;
   border-radius: 4px;
   border: 1px solid #ccc;
   object-fit: contain;
-}
-
-/* ========================================================= */
-/* ===================== VIDEO EMBEDS ====================== */
-/* ========================================================= */
-
-.video-embed {
-  margin-top: 0.5rem;
-  padding: 4px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  max-width: fit-content;
-}
-
-.video-embed iframe {
   display: block;
 }
 
-/* ========================================================= */
-/* ===================== PROJECT 3 GRID ==================== */
-/* ========================================================= */
-
+/* ===== Project 3 Grid ===== */
 .project3-grid li {
   width: 48%;
 }
@@ -258,14 +213,12 @@ body.sidebar-collapsed .main-content {
   width: 100%;
   height: 300px;
   object-fit: contain;
+  display: block;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-/* ========================================================= */
-/* ======================== LINKS ========================== */
-/* ========================================================= */
-
+/* ===== Links ===== */
 a {
   color: #0056b3;
   text-decoration: none;
@@ -277,10 +230,16 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ========================================================= */
-/* ===================== CLOSE DROPDOWN ==================== */
-/* ========================================================= */
+/* ===== Video Embed ===== */
+.video-embed {
+  margin-top: 0.5rem;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: fit-content;
+}
 
+/* ===== Close Dropdown ===== */
 .close-dropdown {
   font-weight: bold;
   color: #0056b3;
@@ -294,38 +253,93 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ========================================================= */
-/* ======================= FOOTER ========================== */
-/* ========================================================= */
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #666;
+/* ===== Intro Section ===== */
+.intro {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(34, 34, 34, 0.2);
 }
 
-/* ========================================================= */
-/* ====================== RESPONSIVE ======================= */
-/* ========================================================= */
+.intro h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
 
-/*
-  IMPORTANT FIX:
-  Previously, your mobile breakpoint set .main-content { margin-left: 0; }
-  while the sidebar remained visible. That caused the content (Project 1 text)
-  to slide underneath the sidebar when the screen gets slightly narrower or zoomed.
-  We keep the margin-left so content always stays to the right of the sidebar,
-  unless the user collapses it.
-*/
+.intro p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+}
 
+/* ===== Dash List ===== */
+.dash-list p {
+  margin: 0.2em 0;
+  line-height: 1.3;
+}
+
+.dash-list strong {
+  font-weight: 900;
+  margin-right: 0.3rem;
+}
+
+/* ===== Labeled Grid ===== */
+.labeled-grid figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.labeled-grid figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+.image-grid.labeled-grid li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Full Width Figure ===== */
+.full-width-figure {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.full-width-figure img {
+  width: 80%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.full-width-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+/* ===== Responsive Styles ===== */
 @media (max-width: 768px) {
-  /* Keep sidebar at a fixed width so the content can keep a consistent gap */
   .sidebar {
     width: 250px;
     max-width: 250px;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 500;
   }
 
-  /* KEEP the gap to the right of the sidebar */
+  body.sidebar-collapsed .sidebar {
+    transform: translateX(-100%);
+  }
+
   .main-content {
     margin-left: 250px;
     padding: 1rem;
@@ -335,7 +349,23 @@ footer {
     margin-left: 0;
   }
 
-  /* Project layout can stack for readability */
+  .toggle-wrapper {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+  }
+
+  .toggle-button {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    background: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
   .project {
     flex-direction: column;
     align-items: center;
@@ -354,7 +384,27 @@ footer {
     width: 100%;
   }
 
-  /* Stack magazine images on smaller screens */
+  .video-embed iframe {
+    width: 100%;
+    height: auto;
+  }
+
+  .full-width-figure img {
+    width: 95%;
+  }
+
+  .resume-download {
+    margin-top: 1rem;
+    display: block;
+    text-align: left;
+  }
+
+  .sidebar-bottom {
+    display: block;
+    text-align: left;
+  }
+
+  /* Media row stacks on mobile */
   .media-image-row {
     width: 100%;
     flex-direction: column;
@@ -362,10 +412,5 @@ footer {
 
   .media-image-row img {
     width: 100%;
-  }
-
-  .video-embed iframe {
-    width: 100%;
-    height: auto;
   }
 }
