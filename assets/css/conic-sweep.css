@@ -1,0 +1,277 @@
+
+
+.md-typeset .cut-depth-table {
+
+  overflow-x: visible !important;
+
+}
+
+.md-typeset .cut-depth-table .md-typeset__scrollwrap {
+
+  overflow-x: auto !important;
+
+}
+
+.md-typeset .cut-depth-table table {
+
+  border-collapse: collapse !important;
+
+  max-width: none !important;
+
+}
+
+.md-typeset .cut-depth-table table th,
+
+.md-typeset .cut-depth-table table td {
+
+  border: 1px solid var(--md-typeset-table-color) !important;
+
+  padding: 0.2em 0.4em !important;
+
+  text-align: center !important;
+
+  vertical-align: middle !important;
+
+  font-size: 1.01rem !important;
+
+  line-height: 1.15 !important;
+
+}
+
+.md-typeset .cut-depth-table table th {
+
+  font-weight: 700 !important;
+
+}
+
+.md-typeset .cut-depth-table table td img {
+
+  display: block !important;
+
+  margin: 0 auto !important;
+
+  max-width: none !important;
+
+}
+
+.md-typeset .cut-depth-table table td mjx-container,
+
+.md-typeset .cut-depth-table table th mjx-container {
+
+  display: inline-block !important;
+
+  margin: 0 auto !important;
+
+  text-align: center !important;
+
+  font-size: 1.0em !important;
+
+}
+
+/* Keep the cone-angle column from wrapping */
+
+.md-typeset .cut-depth-table table th:nth-child(5),
+
+.md-typeset .cut-depth-table table td:nth-child(5) {
+
+  white-space: nowrap !important;
+
+}
+
+/* Click-to-copy angle values */
+
+.md-typeset .copy-angle {
+
+  cursor: pointer !important;
+
+  white-space: nowrap !important;
+
+  display: inline-block !important;
+
+}
+
+.md-typeset .copy-angle:hover {
+
+  background: transparent !important;
+
+}
+
+.md-typeset .copy-angle::after {
+
+  content: none !important;
+
+}
+
+.md-typeset .copy-angle.copied-angle {
+
+  background: var(--md-accent-fg-color--transparent) !important;
+
+}
+
+/* Exact/degree toggle */
+
+.md-typeset .cut-depth-table .angle-exact {
+
+  white-space: nowrap !important;
+
+  display: inline-block !important;
+
+}
+
+.md-typeset .cut-depth-table .angle-degree {
+
+  white-space: nowrap !important;
+
+  display: none !important;
+
+}
+
+.md-typeset .cut-depth-table:has(.angle-toggle:checked) .angle-exact {
+
+  display: none !important;
+
+}
+
+.md-typeset .cut-depth-table:has(.angle-toggle:checked) .angle-degree {
+
+  display: inline-block !important;
+
+}
+
+/* Toggle label in the Cone Angle header */
+
+.md-typeset .cut-depth-table .angle-toggle-label {
+
+  display: block !important;
+
+  margin-top: 0.25em !important;
+
+  font-size: 0.75em !important;
+
+  font-weight: 400 !important;
+
+  white-space: nowrap !important;
+
+}
+
+.md-typeset .cut-depth-table .angle-toggle {
+
+  margin-right: 0.25em !important;
+
+}
+
+/* Table controls: row filters and screen scaling */
+.md-typeset .cut-depth-table {
+  --table-scale: 0.75;
+}
+
+.md-typeset .cut-depth-table .table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75em;
+  margin: 0.4em 0 0.5em 0;
+  font-size: 0.85em;
+}
+
+.md-typeset .cut-depth-table .table-visibility-controls,
+.md-typeset .cut-depth-table .table-scale-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+  flex-wrap: wrap;
+}
+
+.md-typeset .cut-depth-table .table-controls label {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.md-typeset .cut-depth-table .table-controls label.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.md-typeset .cut-depth-table .table-controls input:disabled {
+  cursor: not-allowed;
+}
+
+.md-typeset .cut-depth-table .table-scale-button {
+  min-width: 1.8em;
+  padding: 0.05em 0.45em;
+  border: 1px solid var(--md-typeset-table-color);
+  border-radius: 0.2em;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.4;
+}
+
+.md-typeset .cut-depth-table .table-scale-button:hover {
+  background: var(--md-accent-fg-color--transparent);
+}
+
+.md-typeset .cut-depth-table .table-scale-value {
+  min-width: 3.5em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset .cut-depth-table table {
+  zoom: var(--table-scale);
+}
+
+/* Hide rows, then hide the step column whenever either row filter is active */
+.md-typeset .cut-depth-table.hide-intersections tbody tr.intersection-row,
+.md-typeset .cut-depth-table.hide-phases tbody tr.phase-row {
+  display: none !important;
+}
+
+.md-typeset .cut-depth-table.hide-intersections table th:nth-child(1),
+.md-typeset .cut-depth-table.hide-intersections table td:nth-child(1),
+.md-typeset .cut-depth-table.hide-phases table th:nth-child(1),
+.md-typeset .cut-depth-table.hide-phases table td:nth-child(1) {
+  display: none !important;
+}
+
+
+:root{--md-typeset-table-color:#d8d3ca;--md-default-bg-color:#ffffff;--md-default-fg-color:#303d44;--md-accent-fg-color--transparent:#f4dfca}
+.article-layout{max-width:1240px;margin:0 auto;padding:56px 28px 80px}.article-kicker{color:var(--accent);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin:0 0 10px}.article-title{font:400 clamp(2rem,4vw,3.4rem)/1.17 Georgia,serif;margin:0 0 25px}.article-actions{display:flex;gap:24px;margin-bottom:30px;font-size:.8rem;color:var(--muted)}.contents{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;margin:0 0 32px}.contents summary{cursor:pointer;color:var(--accent);font-size:.85rem}.contents nav{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:15px;font-size:.85rem}.contents a{text-decoration:none}.contents a:hover{text-decoration:underline}
+.md-typeset{background:#ffffff;color:#303d44;padding:40px;border-radius:5px;min-width:0;overflow-wrap:break-word}.md-typeset a{color:#8b4d23}.md-typeset>p>img{display:block;border-radius:3px;background:white;max-width:100%;height:auto;margin:14px 0 26px}.md-typeset .cut-depth-table{margin:26px 0 46px;max-width:100%}.table-scroll{max-width:100%;overflow-x:auto;padding:5px 2px 12px}.md-typeset table{width:100%;background:#fff}.md-typeset table th{background:#f1efea}.md-typeset table tbody tr:nth-child(even){background:#ffffff}.md-typeset table td img{width:75px;height:auto}.md-typeset table input{accent-color:#a75c2a}.table-controls{color:#4a5258}.table-controls button{min-height:32px}.table-hint{font-size:.77rem;color:#626c73;margin-top:8px!important}.copy-status{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:4px;background:#242424;color:white;box-shadow:0 4px 25px #0003;font-size:.85rem;z-index:10}.copy-status:empty{display:none}.page-footer{color:var(--muted);font-size:.75rem;margin-top:28px}.md-typeset .copy-angle:focus-visible{outline-color:#a75c2a}
+@media(max-width:700px){.article-layout{padding:30px 16px 50px}.md-typeset{padding:25px 17px}.article-actions{flex-wrap:wrap;gap:12px 20px}.md-typeset .cut-depth-table .table-controls{align-items:flex-start;flex-direction:column}.contents nav{flex-direction:column}}
+.md-typeset{color-scheme:light}
+
+.article-kicker{color:#c1b78f}.md-typeset{background:#ffffff}.md-typeset table tbody tr{background:#ffffff}
+
+.article-kicker{color:var(--accent)}.article-actions a:hover{color:var(--accent)}
+
+/* Standard prose spacing, independent of the table styles. */
+.md-typeset{font-family:"Segoe UI",Arial,sans-serif;font-size:1rem;line-height:1.6;color:#303d44}
+
+
+.md-typeset>p:first-child{margin-top:0}
+
+
+
+.md-typeset .wiki-clear{clear:both}.md-typeset>p>img{margin:.75em 0;border-radius:0}
+@media(max-width:700px){}
+
+.md-typeset .cut-depth-table{line-height:1.65}
+
+/* Plain document typography; table typography remains separate. */
+.md-typeset{line-height:1.5}
+.md-typeset p{margin:0 0 1em}
+.md-typeset h2{font-family:inherit;font-size:1.5em;font-weight:600;line-height:1.25;margin:1.5em 0 .65em}
+.md-typeset h3{font-family:inherit;font-size:1.25em;font-weight:600;line-height:1.25;margin:1.25em 0 .5em}
+.md-typeset .terminology-list{margin:1em 0;padding:0}
+.md-typeset .terminology-list dt{font-weight:700;margin:1em 0 .2em;line-height:1.5}
+.md-typeset .terminology-list dd{margin:0 0 .8em;padding:0;line-height:1.5}
+.md-typeset .subterm-list{margin:.75em 0 0 1.25em;padding:0}
+.md-typeset .subterm-list dt{margin:.75em 0 .2em}
+.md-typeset .wiki-thumb{float:right;clear:right;box-sizing:border-box;width:260px;max-width:100%;margin:0 0 1em 1.5em;padding:8px;border:1px solid #b8b8b8;border-radius:0;background:#fff;font-size:.875em;line-height:1.4;text-align:center}
+.md-typeset .wiki-thumb img{display:block;width:100%;height:auto;margin:0 0 8px}
+.md-typeset .wiki-thumb figcaption{margin:0;padding:0;line-height:1.4}
+.md-typeset>p>img{display:block;max-width:100%;height:auto;margin:0;border-radius:0;background:#fff}
+@media(max-width:700px){.md-typeset .wiki-thumb{float:right;width:min(260px,100%);margin:0 0 1em 1em}}

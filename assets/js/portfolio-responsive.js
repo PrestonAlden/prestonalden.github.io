@@ -1,0 +1,5 @@
+(() => {
+const button=document.querySelector('.toggle-button'),sidebar=document.querySelector('.sidebar'),mobile=matchMedia('(max-width:768px)');
+function sync(){const collapsed=document.body.classList.contains('sidebar-collapsed');button.setAttribute('aria-expanded',String(!collapsed));button.setAttribute('aria-label',collapsed?'Show contact sidebar':'Hide contact sidebar');sidebar.inert=collapsed;button.textContent=collapsed?'☰':'×';}
+button.addEventListener('click',sync);mobile.addEventListener('change',()=>{document.body.classList.toggle('sidebar-collapsed',mobile.matches);sync();});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!document.body.classList.contains('sidebar-collapsed')){document.body.classList.add('sidebar-collapsed');sync();button.focus();}});sync();
+})();

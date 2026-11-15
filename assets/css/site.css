@@ -1,0 +1,23 @@
+@charset "UTF-8";
+:root{color-scheme:dark;--bg:#050505;--text:#f0eeea;--muted:#bdbab3;--accent:#fd9234;--line:rgba(193,183,143,.32)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;line-height:1.65}a{color:inherit}a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:6px}a{text-underline-offset:4px}
+.home{min-height:100svh;display:flex;flex-direction:column;background:var(--bg)}
+.home-content{width:min(900px,100%);margin:auto;text-align:center;padding:76px 28px 60px}.portrait-frame{width:196px;height:196px;border:1px solid var(--line);border-radius:50%;padding:5px;margin:0 auto 34px}.portrait{width:100%;height:100%;display:block;border-radius:50%;object-fit:cover;object-position:85% center;background:#181818;color:var(--muted)}
+.home h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.7rem,6vw,4.25rem);font-weight:400;letter-spacing:-.035em;line-height:1.2;margin:0;color:var(--text)}.accent-rule{width:36px;height:1px;background:var(--accent);margin:29px auto 38px}.home-nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}.nav-button{min-height:56px;display:inline-flex;justify-content:space-between;align-items:center;gap:28px;border:1px solid var(--line);border-radius:3px;padding:16px 24px;text-decoration:none;font-size:.85rem;letter-spacing:.055em;transition:background .18s,border-color .18s}.nav-button span{color:var(--accent);font-size:1rem}.nav-button:hover{border-color:var(--accent);background:rgba(193,183,143,.06)}.email-link{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.08em;text-decoration:none;color:var(--muted);margin-top:33px}.email-link:hover{color:var(--accent)}.home-footer{text-align:center;padding:18px 24px 25px;font-size:.67rem;letter-spacing:.09em;color:#a7a39b}
+.site-header{padding:22px max(24px,calc((100% - 1240px)/2));display:flex;gap:24px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.site-brand{font:1.4rem Georgia,serif;text-decoration:none;white-space:nowrap}.site-header nav{display:flex;gap:25px;font-size:.82rem}.site-header nav a{text-decoration:none;color:var(--muted)}.site-header nav a:hover{color:var(--accent)}
+@media(max-width:600px){.home-content{padding:48px 24px 40px}.portrait-frame{width:166px;height:166px;margin-bottom:28px}.home-nav{flex-direction:column;max-width:340px;margin:auto}.nav-button{width:100%;font-size:.8rem;padding:15px 19px}.accent-rule{margin:25px auto 30px}.site-header{align-items:flex-start;flex-direction:column;gap:10px;padding:18px 22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Neutral black and faint champagne variation shared by the new pages. */
+body{position:relative;isolation:isolate;min-height:100svh}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 22%,rgba(193,183,143,.035),transparent 58%),radial-gradient(ellipse at 84% 70%,rgba(255,255,255,.022),transparent 62%),radial-gradient(ellipse at 48% 8%,rgba(190,175,143,.025),transparent 52%);background-size:150% 150%,155% 155%,130% 130%;background-position:0% 0%,100% 100%,50% 0%;animation:ambient-colors 38s ease-in-out infinite alternate}
+@keyframes ambient-colors{to{background-position:65% 35%,25% 60%,50% 100%}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
+.home-nav a,.email-link{min-height:44px}.site-header nav{flex-wrap:wrap}.home-content{min-width:0}
+
+/* Keep bright orange limited to small details. */
+.nav-button:hover{border-color:#c1b78f}.email-link:hover{color:#e0d8be}.portrait-frame{box-shadow:0 0 40px rgba(193,183,143,.06)}
+
+/* Slightly stronger orange detail, keeping the neutral background. */
+.nav-button{border-color:rgba(253,146,52,.4)}.nav-button:hover{border-color:var(--accent);background:rgba(253,146,52,.075)}.portrait-frame{border-color:rgba(253,146,52,.48);box-shadow:0 0 32px rgba(253,146,52,.055)}.email-link svg{color:var(--accent)}.email-link:hover{color:var(--accent)}.accent-rule{width:44px}

@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>Conic Sweep Puzzle Sets | Preston Alden</title>
+    <link rel="stylesheet" href="../../assets/css/site.css?v=11">
+    <link rel="stylesheet" href="../../assets/css/conic-sweep.css?v=12">
+    <script>
+      // Configure the article's TeX delimiters before MathJax loads.
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        startup: { typeset: true }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js">
+    </script>
+    <script defer src="../../assets/js/conic-sweep.js?v=12">
+    </script>
+    <link rel="icon" type="image/svg+xml" href="../../favicon-round.svg?v=2">
+    <link rel="stylesheet" href="../../assets/css/article-navigation.css?v=11">
+    <link rel="stylesheet" href="../../assets/css/brand-mark.css?v=11">
+    <style>
+      .article-page {
+        color-scheme: light;
+        --bg: white;
+        --text: #253139;
+        --muted: #525d62;
+        --accent: #54595d;
+        --line: #d5d5d5;
+        --md-typeset-table-color: #c8c8c8;
+        --md-accent-fg-color--transparent: #eaecf0;
+        font-family: sans-serif;
+        column-gap: clamp(12px, 2vw, 32px);
+        display: grid;
+        grid-template-columns: var(--rail-width) minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+        align-items: start;
+      }
+
+      .article-page::before {
+        content: none;
+      }
+
+      .article-page .site-header {
+        position: static;
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px 18px;
+        min-height: 76px;
+        padding: 10px 18px !important;
+        background: white;
+        z-index: 90;
+      }
+
+      .site-header nav {
+        margin-left: auto;
+      }
+
+      .rail-toggle {
+        display: grid;
+        place-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: 4px;
+        background: white;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .rail-toggle:hover {
+        background: #f1f2f1;
+      }
+
+      .rail-toggle span {
+        width: 21px;
+        height: 2px;
+        background: currentColor;
+        box-shadow: 0 -6px currentColor, 0 6px currentColor;
+      }
+
+      .article-page .article-sidebar {
+        position: static;
+        height: auto;
+        width: auto;
+        border: 0;
+        padding-top: 8px;
+        visibility: visible;
+        transform: none;
+        background: white;
+      }
+
+      .article-page .sidebar-heading h2 {
+        color: #54595d;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+
+      .article-page .article-shell {
+        margin: 0;
+        min-width: 0;
+      }
+
+      .article-page[data-sections-open="false"] {
+        grid-template-columns: 64px minmax(0, 1fr);
+      }
+
+      .article-page[data-sections-open="false"] .article-sidebar {
+        display: none;
+      }
+
+      .article-page .md-typeset [id] {
+        scroll-margin-top: 16px;
+      }
+
+      .article-page .article-layout {
+        max-width: none;
+        padding-top: clamp(4px, 1vw, 16px);
+      }
+
+      .sections-column {
+        position: sticky;
+        top: 0;
+        max-height: 100dvh;
+        overflow-y: auto;
+        padding-top: 12px;
+      }
+
+      .rail-toggle {
+        margin-left: 12px;
+      }
+
+      .article-page .md-typeset, .article-page button, .article-page input, .article-page select {
+        font-family: sans-serif;
+      }
+
+      .article-page .article-title, .article-page .md-typeset h2, .article-page .site-brand {
+        font-family: "Linux Libertine", Georgia, Times, serif;
+        font-weight: 400;
+      }
+
+      @media (max-width: 768px) {
+        .article-page {
+          display: block;
+        }
+
+        .sections-column {
+          position: static;
+          max-height: none;
+          padding-top: 4px;
+        }
+
+        .article-page .site-header nav {
+          gap: 12px;
+        }
+
+      }
+
+      .article-page .scroll-logo {
+        filter: grayscale(1);
+      }
+
+      .article-page {
+        --text: #282a29;
+        --muted: #525653;
+        --accent: #555957;
+        --field-sans: "Segoe UI", Arial, sans-serif;
+        font-family: var(--field-sans);
+      }
+
+      .article-page .md-typeset, .article-page button, .article-page input, .article-page select {
+        font-family: var(--field-sans);
+      }
+
+      .article-page .md-typeset {
+        color: var(--text);
+        font-size: 1.0625rem;
+        line-height: 1.56;
+        padding: clamp(18px, 3vw, 40px);
+        border-radius: 0;
+      }
+
+      .article-page .site-brand, .article-page .article-title, .article-page .md-typeset h2,
+      .article-page .article-sidebar {
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 400;
+      }
+
+      .article-page .author-note {
+        margin: 0 0 1.25rem;
+        padding: .75rem 1rem;
+        background: #f2f2f2;
+        border-radius: 3px;
+      }
+
+      .article-page .article-title {
+        color: var(--text);
+        font-size: clamp(2rem, 3vw, 2.45rem);
+        line-height: 1.18;
+        letter-spacing: -.025em;
+        margin: 0 0 .78em;
+      }
+
+      .article-page .md-typeset h2 {
+        clear: both;
+        color: var(--text);
+        border-inline-start: 3px solid var(--accent);
+        padding-inline-start: 13px;
+        margin: 1.5em 0 .7em;
+        font-size: clamp(1.45rem, 2vw, 1.62rem);
+        line-height: 1.12;
+      }
+
+      .article-page .md-typeset h3, .article-page .md-typeset h4 {
+        font-family: var(--field-sans);
+        color: var(--text);
+        font-weight: 650;
+        line-height: 1.35;
+      }
+
+      .article-page .md-typeset h3 {
+        font-size: 1.18em;
+        margin: .9em 0 .25em;
+      }
+
+      /* Let the heading supply both halves of the divider gap. */
+      .md-typeset .cut-depth-table:has(+ h4) {
+        margin-bottom: 0;
+      }
+
+      .cut-depth-table:has(+ h4) .table-scroll {
+        padding-bottom: 0;
+      }
+
+      #platonic-solids ~ .cut-depth-table + h4 {
+        --divider-gap: 2rem;
+        margin-top: var(--divider-gap);
+        border-top: 2px solid var(--line);
+        padding-top: var(--divider-gap);
+      }
+
+      .article-page .md-typeset h4 {
+        font-size: 1.08em;
+        margin: 1.7em 0 .65em;
+      }
+
+      .article-page .md-typeset h3, .article-page .md-typeset h4, .article-page .md-typeset h2 ~ p, .article-page .terminology-list {
+        margin-inline-start: 16px;
+      }
+
+      .article-page .subterm-list dt,
+      .article-page .subterm-list dd {
+        display: inline;
+        margin: 0;
+      }
+
+      .article-page .subterm-list > div + div {
+        margin-top: .4em;
+      }
+
+      .article-page .md-typeset .terminology-list {
+        padding-inline-start: 16px;
+        margin-inline-start: 0;
+      }
+
+      .article-page .md-typeset .wiki-thumb {
+        margin-block-start: .4em;
+      }
+
+      .article-page .wiki-thumb figcaption {
+        color: var(--muted);
+        text-align: left;
+      }
+
+      .article-page .table-controls {
+        gap: .75rem;
+        color: var(--muted);
+      }
+
+      .article-page .cut-depth-table {
+        --md-typeset-table-color: #d2d4d2;
+      }
+
+      .article-page .table-scale-button {
+        border-radius: 3px;
+      }
+
+      @media (max-width: 700px) {
+        .article-page .article-layout {
+          padding-inline: 8px;
+        }
+
+        .article-page .md-typeset {
+          padding-inline: 12px;
+          font-size: 1rem;
+        }
+
+        .article-page .md-typeset .wiki-thumb {
+          float: none;
+          margin: 1em 0 1.4em 16px;
+          max-width: calc(100% - 16px);
+        }
+
+      }
+
+      .article-page .article-sidebar nav a:hover, .article-page .article-sidebar nav a[aria-current="location"] {
+        border-left-color: var(--accent);
+        background: #f1f1f1;
+      }
+
+      .article-page .section-children {
+        border-left-color: var(--line);
+      }
+
+      .article-page .section-group:has(a[aria-current="location"]) > summary {
+        background: #f6f6f6;
+      }
+
+      .article-page .md-typeset a {
+        color: #454545;
+      }
+
+      .article-page input {
+        accent-color: var(--accent);
+      }
+
+      .article-page .md-typeset table input {
+        accent-color: var(--accent);
+      }
+
+      .article-page .md-typeset .copy-angle:focus-visible {
+        outline-color: var(--accent);
+      }
+
+      .article-page .md-typeset table th {
+        background: #f2f2f2;
+      }
+
+      /* Keep each row's original shade when neighboring rows are hidden. */
+      .article-page .cut-depth-table tbody tr:nth-child(even) {
+        background-color: #ededed;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const rail = document.getElementById('article-sidebar');
+        const button = document.querySelector('.rail-toggle');
+        const links = [...rail.querySelectorAll('nav a')];
+        const narrow = matchMedia('(max-width: 768px)');
+        function showSections(open) {
+          document.body.dataset.sectionsOpen = String(open);
+          button.setAttribute('aria-expanded', String(open));
+          button.setAttribute('aria-label', open ? 'Hide article sections' : 'Show article sections');
+        }
+        showSections(true);
+        button.addEventListener('click', () => showSections(button.getAttribute('aria-expanded') !== 'true'));
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+            showSections(false);
+            button.focus();
+          }
+        });
+        links.forEach(link => link.addEventListener('click', () => {
+          if (narrow.matches) {
+            showSections(false);
+            const target = document.getElementById(link.hash.slice(1));
+            if (target) {
+              target.tabIndex = -1;
+              target.focus({ preventScroll: true });
+            }
+          }
+        }));
+
+        // Highlight the last section that has reached the top reading area.
+        const sections = links.map(link => document.getElementById(link.hash.slice(1))).filter(Boolean);
+        let pending = false;
+
+        function markSection() {
+          pending = false;
+          let current = sections[0];
+          for (const section of sections) {
+            if (section.getBoundingClientRect().top > 150) break;
+            current = section;
+          }
+          links.forEach(link => {
+            if (current && link.hash === '#' + current.id) {
+              link.setAttribute('aria-current', 'location');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+
+        addEventListener('scroll', () => {
+          if (!pending) {
+            pending = true;
+            requestAnimationFrame(markSection);
+          }
+        }, { passive: true });
+
+        markSection();
+      });
+    </script>
+  </head>
+  <body class="article-page">
+    <header class="site-header">
+      <a class="site-brand" href="../../index.html"><span>Preston Alden</span><img class="scroll-logo" src="../../assets/images/logo-mark.svg?v=11" alt="" aria-hidden="true" width="64" height="64"></a>
+      <nav aria-label="Main navigation">
+        <a href="../../index.html">Home</a>
+      </nav>
+    </header>
+    <!-- Section links target the matching IDs in the article below. -->
+    <div class="sections-column">
+      <button class="rail-toggle" type="button" aria-controls="article-sidebar" aria-expanded="true" aria-label="Hide article sections"><span aria-hidden="true"></span></button>
+      <aside class="article-sidebar" id="article-sidebar" aria-labelledby="sidebar-heading">
+        <div class="sidebar-heading">
+          <h2 id="sidebar-heading">On This Page</h2>
+        </div>
+        <nav aria-label="Article sections">
+          <details class="section-group" open>
+            <summary><a href="#terminology">Terminology</a></summary>
+            <div class="section-children">
+              <a href="#trace-line">Trace Line</a>
+              <a href="#puzzle">Puzzle</a>
+              <details class="section-group" open>
+                <summary><a href="#boundary-intersection">Boundary/Intersection</a></summary>
+                <div class="section-children">
+                  <a href="#tangency">Tangency</a>
+                  <a href="#concurrence">Concurrence</a>
+                  <a href="#coincidence">Coincidence</a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="section-group" open>
+            <summary><a href="#catalog-of-conic-sweep-sets">Catalog of Conic Sweep Puzzle Sets</a></summary>
+            <div class="section-children">
+              <details class="section-group" open>
+                <summary><a href="#platonic-solids">Platonic Solids</a></summary>
+                <div class="section-children">
+                  <a href="#tetrahedral-conic-sweep-set">Tetrahedron</a>
+                  <a href="#hexahedral-conic-sweep-set">Hexahedron</a>
+                  <a href="#octahedral-conic-sweep-set">Octahedron</a>
+                  <a href="#dodecahedral-conic-sweep-set">Dodecahedron</a>
+                  <a href="#icosahedral-conic-sweep-set">Icosahedron</a>
+                </div>
+              </details>
+            </div>
+          </details>
+        </nav>
+      </aside>
+    </div>
+    <div class="article-shell">
+      <main class="article-layout">
+        <article class="md-typeset">
+          <aside class="author-note">Author's Note: This article is meant to serve as a reference sheet to aid myself in the design of twisty puzzles. I'm also using this as a canvas of sorts to help me sort out some of the theory behind these puzzles. 
+            I'm sharing this publicly because I believe much of the information detailed here cannot be found elsewhere on the internet (at the time of writing) despite being built off of well-known concepts.  
+            Please note that much of the terminology in this article, including the title, was chosen by me in the making of this article. Most of the terms were adapted from existing mathematical terminology, such as “concurrence,” in an effort to make them 
+            intuitive and minimize unnecessary abstraction.
+            <br>If you find any errors or have any feedback please send me an email.</aside>
+          <h1 class="article-title" id="article-top">Conic Sweep Puzzle Sets</h1>
+          <!-- <details>
+          <summary>Author's note</summary>
+          This article was primarily written by me, Preston Alden.
+          </details> -->
+          <p>A <strong>conic sweep puzzle set</strong> is a set of every distinct puzzle produced by cutting a solid with congruent, origin-centered cones whose axes are aligned to the face normals of a given polyhedron.</p>
+          <p>This article is meant to serve as a reference sheet detailing notable puzzle sets in full with exact measurements and solutions. In practice, these solutions can provide exceptionally helpful literal guidelines when designing cutpaths for twisty puzzles.</p>
+          <h2 id="terminology">Terminology</h2>
+          <figure class="wiki-thumb">
+            <img src="https://assets.hypercubing.xyz/img/conic_cut_gifs/sphere_cone_centerline_no_xh_final.gif" alt="A visualization of a single conical cut">
+            <figcaption>A visualization of a single conical cut, where θ represents the cone angle and the trace line is shown in red</figcaption>
+          </figure>
+          <dl class="terminology-list">
+            <dt id="trace-line">Trace Line</dt>
+            <dd>A <strong>trace line</strong> is a curve formed by the intersection of a cone and the surface of a solid. In the case of a sphere (when centered at the origin), a trace line will always be circular, but with a different solid or polyhedron a trace line can be very curvy and sharp.</dd>
+            <dt id="puzzle">Puzzle</dt>
+            <dd>A <strong>puzzle</strong> is any result in a full conic sweep operation for a given polyhedron where \(0^\circ &lt; \theta &lt; 180^\circ\). The sets below exhibit every “unique” puzzle for their respective polyhedra so they only cover results in the range \(0^\circ &lt; \theta \le 90^\circ\) because values past \(90^\circ\) only produce mirrored (non-unique) puzzles. Each set is composed of two alternating types of puzzles: a sweep over a range before an intersection known as a phase, or a static instance at a phase boundary.</dd>
+            <dt id="boundary-intersection">Boundary/Intersection</dt>
+            <dd>A phase boundary or intersection occurs when two or more trace lines make contact in one of three ways:
+            <dl class="subterm-list">
+              <div>
+                <dt id="tangency">Tangency</dt> <dd>- When two trace lines meet at a point and share the same local direction at that point.</dd>
+              </div>
+              <div>
+                <dt id="concurrence">Concurrence</dt> <dd>- When three or more non-tangent trace lines intersect at one common point.</dd>
+              </div>
+              <div>
+                <dt id="coincidence">Coincidence</dt> <dd>- When two trace lines completely overlap (this can only occur at \(\theta = 90^\circ\)).</dd>
+              </div>
+            </dl>
+            </dd>
+          </dl>
+          <div class="wiki-clear">
+          </div>
+          <h2 id="catalog-of-conic-sweep-sets">Catalog of Conic Sweep Puzzle Sets</h2>
+          <h3 id="platonic-solids">Platonic Solids</h3>
+          <p>The Platonic solids form a fundamental class of conic sweep puzzle sets. These sets often appear as recurring subsets within other polyhedral conic sweep puzzle sets, especially those associated with the Catalan and Archimedean solids.</p>
+          <h4 id="tetrahedral-conic-sweep-set">Tetrahedral Conic Sweep Puzzle Set</h4>
+          <p><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_90_sweep_full.gif&width=200" alt="Tetrahedron 90 sweep full"></p>
+          <p>The tetrahedral set consists of five distinct puzzles. Uniquely, the tetrahedron is the only Platonic solid that does not end with a coincident intersection due to its lack of opposing faces. It is the only set that never crosses the center point of its faces. This group contains only two trace-line intersections, one tangent and the other concurrent.</p>
+          <!-- Each table has independent row filters, angle display, and zoom controls. -->
+          <div class="cut-depth-table">
+            <div class="table-controls">
+              <div class="table-visibility-controls">
+                <label><input class="hide-intersections-toggle" type="checkbox"> Hide Intersections</label>
+                <label><input class="hide-phases-toggle" type="checkbox"> Hide Phases</label>
+              </div>
+              <div class="table-scale-controls">
+                <button class="table-scale-button table-scale-minus" type="button" aria-label="Make table smaller">−</button>
+                <span class="table-scale-value">75%</span>
+                <button class="table-scale-button table-scale-plus" type="button" aria-label="Make table larger">+</button>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable conic sweep puzzle table">
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">Step</th>
+                    <th align="right">Phase</th>
+                    <th align="right">Boundary /<br>Intersection</th>
+                    <th>Image</th>
+                    <th>Cone Angle \(\theta\)<br><label class="angle-toggle-label"><input class="angle-toggle" type="checkbox">show degree form</label></th>
+                    <th>Sweep Progress <br> (\(s = \theta/90^\circ\))</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">1</td>
+                    <td align="right">1</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_54p8_sweep.gif&width=75" alt="Tetrahedron 54p8 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta &lt;\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta &lt;\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{0\% &lt; s &lt; \mathord{\sim}60.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td align="right">1</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_54p8.gif&width=75" alt="Tetrahedron 54p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}60.8\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">3</td>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_70p5_sweep.gif&width=75" alt="Tetrahedron 70p5 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle &lt; \theta &lt;\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle &lt; \theta &lt;\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}60.8\% &lt; s &lt; \mathord{\sim}78.4\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td align="right">2</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_70p5.gif&width=75" alt="Tetrahedron 70p5"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}78.4\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">5</td>
+                    <td align="right">3</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Tetrahedron_90_sweep.gif&width=75" alt="Tetrahedron 90 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle &lt; \theta \le\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle &lt; \theta \le\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}78.4\% &lt; s \le 100\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h4 id="hexahedral-conic-sweep-set">Hexahedral Conic Sweep Puzzle Set</h4>
+          <p><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_90_sweep_full.gif&width=200" alt="Cube 90 sweep full"></p>
+          <p>The hexahedral set consists of six distinct puzzles. This group contains three trace-line intersections: 1 tangent, 1 concurrent, and 1 coincident.</p>
+          <div class="cut-depth-table">
+            <div class="table-controls">
+              <div class="table-visibility-controls">
+                <label><input class="hide-intersections-toggle" type="checkbox"> Hide Intersections</label>
+                <label><input class="hide-phases-toggle" type="checkbox"> Hide Phases</label>
+              </div>
+              <div class="table-scale-controls">
+                <button class="table-scale-button table-scale-minus" type="button" aria-label="Make table smaller">−</button>
+                <span class="table-scale-value">75%</span>
+                <button class="table-scale-button table-scale-plus" type="button" aria-label="Make table larger">+</button>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable conic sweep puzzle table">
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">Step</th>
+                    <th align="right">Phase</th>
+                    <th align="right">Boundary /<br>Intersection</th>
+                    <th>Image</th>
+                    <th>Cone Angle \(\theta\)<br><label class="angle-toggle-label"><input class="angle-toggle" type="checkbox">show degree form</label></th>
+                    <th>Sweep Progress <br> (\(s = \theta/90^\circ\))</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">1</td>
+                    <td align="right">1</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_45_sweep.gif&width=75" alt="Cube 45 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45.000^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{0\% &lt; s \lt 50.0\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td align="right">1</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_45.gif&width=75" alt="Cube 45"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45^\circ\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45.000^\circ\)</span></span></td>
+                    <td>\(\displaystyle 50.0\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">3</td>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_54p7_sweep.gif&width=75" alt="Cube 54p7 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="45deg" role="button" tabindex="0" aria-label="Copy 45deg" title="Copy angle">\(\displaystyle 45.000^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{50.0\% \lt s \lt \mathord{\sim}60.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td align="right">2</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_54p8.gif&width=75" alt="Cube 54p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}60.8\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">5</td>
+                    <td align="right">3</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_90_sweep.gif&width=75" alt="Cube 90 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}60.8\% \lt s \lt 100\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td align="right">3</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Cube_90.gif&width=75" alt="Cube 90"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span></span></td>
+                    <td>\(\displaystyle 100\%\)</td>
+                    <td>Coincident</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h4 id="octahedral-conic-sweep-set">Octahedral Conic Sweep Puzzle Set</h4>
+          <p><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_90_sweep_full.gif&width=200" alt="Octahedron 90 sweep full"></p>
+          <p>The octahedral set consists of eight distinct puzzles. This group contains four trace-line intersections: 2 tangent, 1 concurrent, and 1 coincident.</p>
+          <div class="cut-depth-table">
+            <div class="table-controls">
+              <div class="table-visibility-controls">
+                <label><input class="hide-intersections-toggle" type="checkbox"> Hide Intersections</label>
+                <label><input class="hide-phases-toggle" type="checkbox"> Hide Phases</label>
+              </div>
+              <div class="table-scale-controls">
+                <button class="table-scale-button table-scale-minus" type="button" aria-label="Make table smaller">−</button>
+                <span class="table-scale-value">75%</span>
+                <button class="table-scale-button table-scale-plus" type="button" aria-label="Make table larger">+</button>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable conic sweep puzzle table">
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">Step</th>
+                    <th align="right">Phase</th>
+                    <th align="right">Boundary /<br>Intersection</th>
+                    <th>Image</th>
+                    <th>Cone Angle \(\theta\)<br><label class="angle-toggle-label"><input class="angle-toggle" type="checkbox">show degree form</label></th>
+                    <th>Sweep Progress <br> (\(s = \theta/90^\circ\))</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">1</td>
+                    <td align="right">1</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_35p3_sweep.gif&width=75" alt="Octahedron 35p3 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{0\% &lt; s \lt \mathord{\sim}39.2\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td align="right">1</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_35p2.gif&width=75" alt="Octahedron 35p2"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}39.2\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">3</td>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_54p7_sweep.gif&width=75" alt="Octahedron 54p7 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}39.2\% \lt s \lt \mathord{\sim}60.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td align="right">2</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_54p8.gif&width=75" alt="Octahedron 54p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}60.8\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">5</td>
+                    <td align="right">3</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_70p5_sweep.gif&width=75" alt="Octahedron 70p5 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}60.8\% \lt s \lt \mathord{\sim}78.4\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td align="right">3</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_70p5.gif&width=75" alt="Octahedron 70p5"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}78.4\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">7</td>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_90_sweep.gif&width=75" alt="Octahedron 90 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}78.4\% \lt s \lt 100\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">8</td>
+                    <td align="right">NA</td>
+                    <td align="right">4</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Octahedron_90.gif&width=75" alt="Octahedron 90"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span></span></td>
+                    <td>\(\displaystyle 100\%\)</td>
+                    <td>Coincident</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h4 id="dodecahedral-conic-sweep-set">Dodecahedral Conic Sweep Puzzle Set</h4>
+          <p><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_90_sweep_full.gif&width=200" alt="Dodecahedron 90 sweep full"></p>
+          <p>The dodecahedral set consists of 12 distinct puzzles. This group contains six trace-line intersections: 2 tangent, 3 concurrent, and 1 coincident.</p>
+          <div class="cut-depth-table">
+            <div class="table-controls">
+              <div class="table-visibility-controls">
+                <label><input class="hide-intersections-toggle" type="checkbox"> Hide Intersections</label>
+                <label><input class="hide-phases-toggle" type="checkbox"> Hide Phases</label>
+              </div>
+              <div class="table-scale-controls">
+                <button class="table-scale-button table-scale-minus" type="button" aria-label="Make table smaller">−</button>
+                <span class="table-scale-value">75%</span>
+                <button class="table-scale-button table-scale-plus" type="button" aria-label="Make table larger">+</button>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable conic sweep puzzle table">
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">Step</th>
+                    <th align="right">Phase</th>
+                    <th align="right">Boundary /<br>Intersection</th>
+                    <th>Image</th>
+                    <th>Cone Angle \(\theta\)<br><label class="angle-toggle-label"><input class="angle-toggle" type="checkbox">show degree form</label></th>
+                    <th>Sweep Progress <br> (\(s = \theta/90^\circ\))</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">1</td>
+                    <td align="right">1</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_31p7_sweep.gif&width=75" alt="Dodecahedron 31p7 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5+sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+\sqrt{5}}{10}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="31.717deg" role="button" tabindex="0" aria-label="Copy 31.717deg" title="Copy angle">\(\displaystyle \mathord{\sim}31.717^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{0\% &lt; s \lt \mathord{\sim}35.2\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td align="right">1</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_31p7.gif&width=75" alt="Dodecahedron 31p7"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5+sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+\sqrt{5}}{10}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="31.717deg" role="button" tabindex="0" aria-label="Copy 31.717deg" title="Copy angle">\(\displaystyle \mathord{\sim}31.717^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}35.2\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">3</td>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_37p4_sweep.gif&width=75" alt="Dodecahedron 37p4 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5+sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+\sqrt{5}}{10}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="31.717deg" role="button" tabindex="0" aria-label="Copy 31.717deg" title="Copy angle">\(\displaystyle \mathord{\sim}31.717^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}35.2\% \lt s \lt \mathord{\sim}41.5\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td align="right">2</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_37p4.gif&width=75" alt="Dodecahedron 37p4"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}41.5\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">5</td>
+                    <td align="right">3</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_58p3_sweep.gif&width=75" alt="Dodecahedron 58p3 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5-sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-\sqrt{5}}{10}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="58.283deg" role="button" tabindex="0" aria-label="Copy 58.283deg" title="Copy angle">\(\displaystyle \mathord{\sim}58.283^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}41.5\% \lt s \lt \mathord{\sim}64.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td align="right">3</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_58p3.gif&width=75" alt="Dodecahedron 58p3"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5-sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-\sqrt{5}}{10}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="58.283deg" role="button" tabindex="0" aria-label="Copy 58.283deg" title="Copy angle">\(\displaystyle \mathord{\sim}58.283^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}64.8\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">7</td>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_63p4_sweep.gif&width=75" alt="Dodecahedron 63p4 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5-sqr(5))/10))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-sqr(5))/10))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-\sqrt{5}}{10}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/sqr(5))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(5))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{5}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="58.283deg" role="button" tabindex="0" aria-label="Copy 58.283deg" title="Copy angle">\(\displaystyle \mathord{\sim}58.283^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="63.435deg" role="button" tabindex="0" aria-label="Copy 63.435deg" title="Copy angle">\(\displaystyle \mathord{\sim}63.435^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}64.8\% \lt s \lt \mathord{\sim}70.5\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">8</td>
+                    <td align="right">NA</td>
+                    <td align="right">4</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_63p4.gif&width=75" alt="Dodecahedron 63p4"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/sqr(5))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(5))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{5}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="63.435deg" role="button" tabindex="0" aria-label="Copy 63.435deg" title="Copy angle">\(\displaystyle \mathord{\sim}63.435^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}70.5\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">9</td>
+                    <td align="right">5</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_79p2_sweep.gif&width=75" alt="Dodecahedron 79p2 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/sqr(5))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(5))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{5}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="63.435deg" role="button" tabindex="0" aria-label="Copy 63.435deg" title="Copy angle">\(\displaystyle \mathord{\sim}63.435^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}70.5\% \lt s \lt \mathord{\sim}88.0\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">10</td>
+                    <td align="right">NA</td>
+                    <td align="right">5</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_79p2.gif&width=75" alt="Dodecahedron 79p2"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}88.0\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">11</td>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_90_sweep.gif&width=75" alt="Dodecahedron 90 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}88.0\% \lt s \lt 100\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">12</td>
+                    <td align="right">NA</td>
+                    <td align="right">6</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Dodecahedron_90.gif&width=75" alt="Dodecahedron 90"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span></span></td>
+                    <td>\(\displaystyle 100\%\)</td>
+                    <td>Coincident</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <h4 id="icosahedral-conic-sweep-set">Icosahedral Conic Sweep Puzzle Set</h4>
+          <p><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_90_sweep_full.gif&width=200" alt="Icosahedron 90 sweep full"></p>
+          <p>The icosahedral set consists of 24 distinct puzzles. This group contains 12 trace-line intersections: 4 tangent, 7 concurrent, and 1 coincident.</p>
+          <div class="cut-depth-table">
+            <div class="table-controls">
+              <div class="table-visibility-controls">
+                <label><input class="hide-intersections-toggle" type="checkbox"> Hide Intersections</label>
+                <label><input class="hide-phases-toggle" type="checkbox"> Hide Phases</label>
+              </div>
+              <div class="table-scale-controls">
+                <button class="table-scale-button table-scale-minus" type="button" aria-label="Make table smaller">−</button>
+                <span class="table-scale-value">75%</span>
+                <button class="table-scale-button table-scale-plus" type="button" aria-label="Make table larger">+</button>
+              </div>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable conic sweep puzzle table">
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">Step</th>
+                    <th align="right">Phase</th>
+                    <th align="right">Boundary /<br>Intersection</th>
+                    <th>Image</th>
+                    <th>Cone Angle \(\theta\)<br><label class="angle-toggle-label"><input class="angle-toggle" type="checkbox">show degree form</label></th>
+                    <th>Sweep Progress <br> (\(s = \theta/90^\circ\))</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">1</td>
+                    <td align="right">1</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_20p9_sweep.gif&width=75" alt="Icosahedron 20p9 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="arccos((sqr(15)+sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)+sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}+\sqrt{3}}{6}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="0deg" role="button" tabindex="0" aria-label="Copy 0deg" title="Copy angle">\(\displaystyle 0^\circ\)</span>\(\displaystyle &lt; \theta \lt\)<span class="copy-angle" data-copy="20.905deg" role="button" tabindex="0" aria-label="Copy 20.905deg" title="Copy angle">\(\displaystyle \mathord{\sim}20.905^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{0\% &lt; s \lt \mathord{\sim}23.2\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td align="right">1</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_21.gif&width=75" alt="Icosahedron 21"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos((sqr(15)+sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)+sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}+\sqrt{3}}{6}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="20.905deg" role="button" tabindex="0" aria-label="Copy 20.905deg" title="Copy angle">\(\displaystyle \mathord{\sim}20.905^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}23.2\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">3</td>
+                    <td align="right">2</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_35p3_sweep.gif&width=75" alt="Icosahedron 35p3 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos((sqr(15)+sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)+sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}+\sqrt{3}}{6}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="20.905deg" role="button" tabindex="0" aria-label="Copy 20.905deg" title="Copy angle">\(\displaystyle \mathord{\sim}20.905^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}23.2\% \lt s \lt \mathord{\sim}39.2\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td align="right">2</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_35p2.gif&width=75" alt="Icosahedron 35p2"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}39.2\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">5</td>
+                    <td align="right">3</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_37p4_sweep.gif&width=75" alt="Icosahedron 37p4 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(2/sqr(6))" role="button" tabindex="0" aria-label="Copy arccos(2/sqr(6))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{2}{\sqrt{6}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="35.264deg" role="button" tabindex="0" aria-label="Copy 35.264deg" title="Copy angle">\(\displaystyle \mathord{\sim}35.264^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}39.2\% \lt s \lt \mathord{\sim}41.5\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td align="right">3</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_37p4.gif&width=75" alt="Icosahedron 37p4"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}41.5\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">7</td>
+                    <td align="right">4</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_41p8_sweep.gif&width=75" alt="Icosahedron 41p8 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5+2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5+2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5+2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr(5)/3)" role="button" tabindex="0" aria-label="Copy arccos(sqr(5)/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{5}}{3}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="37.377deg" role="button" tabindex="0" aria-label="Copy 37.377deg" title="Copy angle">\(\displaystyle \mathord{\sim}37.377^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="41.810deg" role="button" tabindex="0" aria-label="Copy 41.810deg" title="Copy angle">\(\displaystyle \mathord{\sim}41.810^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}41.5\% \lt s \lt \mathord{\sim}46.5\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">8</td>
+                    <td align="right">NA</td>
+                    <td align="right">4</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_41p8.gif&width=75" alt="Icosahedron 41p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr(5)/3)" role="button" tabindex="0" aria-label="Copy arccos(sqr(5)/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{5}}{3}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="41.810deg" role="button" tabindex="0" aria-label="Copy 41.810deg" title="Copy angle">\(\displaystyle \mathord{\sim}41.810^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}46.5\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">9</td>
+                    <td align="right">5</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_54p7_sweep.gif&width=75" alt="Icosahedron 54p7 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr(5)/3)" role="button" tabindex="0" aria-label="Copy arccos(sqr(5)/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{5}}{3}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="41.810deg" role="button" tabindex="0" aria-label="Copy 41.810deg" title="Copy angle">\(\displaystyle \mathord{\sim}41.810^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}46.5\% \lt s \lt \mathord{\sim}60.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">10</td>
+                    <td align="right">NA</td>
+                    <td align="right">5</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_54p8.gif&width=75" alt="Icosahedron 54p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}60.8\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">11</td>
+                    <td align="right">6</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_56p8_sweep.gif&width=75" alt="Icosahedron 56p8 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/sqr(3))" role="button" tabindex="0" aria-label="Copy arccos(1/sqr(3))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{\sqrt{3}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((19+8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19+8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19+8\sqrt{5}}{123}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="54.736deg" role="button" tabindex="0" aria-label="Copy 54.736deg" title="Copy angle">\(\displaystyle \mathord{\sim}54.736^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="56.795deg" role="button" tabindex="0" aria-label="Copy 56.795deg" title="Copy angle">\(\displaystyle \mathord{\sim}56.795^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}60.8\% \lt s \lt \mathord{\sim}63.1\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">12</td>
+                    <td align="right">NA</td>
+                    <td align="right">6</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_56p8.gif&width=75" alt="Icosahedron 56p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((19+8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19+8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19+8\sqrt{5}}{123}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="56.795deg" role="button" tabindex="0" aria-label="Copy 56.795deg" title="Copy angle">\(\displaystyle \mathord{\sim}56.795^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}63.1\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">13</td>
+                    <td align="right">7</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_60p8_sweep.gif&width=75" alt="Icosahedron 60p8 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((19+8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19+8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19+8\sqrt{5}}{123}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr(5/21))" role="button" tabindex="0" aria-label="Copy arccos(sqr(5/21))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5}{21}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="56.795deg" role="button" tabindex="0" aria-label="Copy 56.795deg" title="Copy angle">\(\displaystyle \mathord{\sim}56.795^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="60.794deg" role="button" tabindex="0" aria-label="Copy 60.794deg" title="Copy angle">\(\displaystyle \mathord{\sim}60.794^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}63.1\% \lt s \lt \mathord{\sim}67.5\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">14</td>
+                    <td align="right">NA</td>
+                    <td align="right">7</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_60p8.gif&width=75" alt="Icosahedron 60p8"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr(5/21))" role="button" tabindex="0" aria-label="Copy arccos(sqr(5/21))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5}{21}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="60.794deg" role="button" tabindex="0" aria-label="Copy 60.794deg" title="Copy angle">\(\displaystyle \mathord{\sim}60.794^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}67.5\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">15</td>
+                    <td align="right">8</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_69p1_sweep.gif&width=75" alt="Icosahedron 69p1 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr(5/21))" role="button" tabindex="0" aria-label="Copy arccos(sqr(5/21))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5}{21}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos((sqr(15)-sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)-sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}-\sqrt{3}}{6}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="60.794deg" role="button" tabindex="0" aria-label="Copy 60.794deg" title="Copy angle">\(\displaystyle \mathord{\sim}60.794^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="69.095deg" role="button" tabindex="0" aria-label="Copy 69.095deg" title="Copy angle">\(\displaystyle \mathord{\sim}69.095^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}67.5\% \lt s \lt \mathord{\sim}76.8\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">16</td>
+                    <td align="right">NA</td>
+                    <td align="right">8</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_69p1.gif&width=75" alt="Icosahedron 69p1"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos((sqr(15)-sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)-sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}-\sqrt{3}}{6}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="69.095deg" role="button" tabindex="0" aria-label="Copy 69.095deg" title="Copy angle">\(\displaystyle \mathord{\sim}69.095^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}76.8\%\)</td>
+                    <td>Tangent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">17</td>
+                    <td align="right">9</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_70p5_sweep.gif&width=75" alt="Icosahedron 70p5 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos((sqr(15)-sqr(3))/6)" role="button" tabindex="0" aria-label="Copy arccos((sqr(15)-sqr(3))/6)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{\sqrt{15}-\sqrt{3}}{6}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="69.095deg" role="button" tabindex="0" aria-label="Copy 69.095deg" title="Copy angle">\(\displaystyle \mathord{\sim}69.095^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}76.8\% \lt s \lt \mathord{\sim}78.4\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">18</td>
+                    <td align="right">NA</td>
+                    <td align="right">9</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_70p5.gif&width=75" alt="Icosahedron 70p5"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}78.4\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">19</td>
+                    <td align="right">10</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_79p2_sweep.gif&width=75" alt="Icosahedron 79p2 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(1/3)" role="button" tabindex="0" aria-label="Copy arccos(1/3)" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\dfrac{1}{3}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="70.529deg" role="button" tabindex="0" aria-label="Copy 70.529deg" title="Copy angle">\(\displaystyle \mathord{\sim}70.529^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}78.4\% \lt s \lt \mathord{\sim}88.0\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">20</td>
+                    <td align="right">NA</td>
+                    <td align="right">10</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_79p2.gif&width=75" alt="Icosahedron 79p2"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}88.0\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">21</td>
+                    <td align="right">11</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_84p5_sweep.gif&width=75" alt="Icosahedron 84p5 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((5-2*sqr(5))/15))" role="button" tabindex="0" aria-label="Copy arccos(sqr((5-2*sqr(5))/15))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{5-2\sqrt{5}}{15}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="arccos(sqr((19-8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19-8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19-8\sqrt{5}}{123}}\right)\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="79.188deg" role="button" tabindex="0" aria-label="Copy 79.188deg" title="Copy angle">\(\displaystyle \mathord{\sim}79.188^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="84.545deg" role="button" tabindex="0" aria-label="Copy 84.545deg" title="Copy angle">\(\displaystyle \mathord{\sim}84.545^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}88.0\% \lt s \lt \mathord{\sim}93.9\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">22</td>
+                    <td align="right">NA</td>
+                    <td align="right">11</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_84p6.gif&width=75" alt="Icosahedron 84p6"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="arccos(sqr((19-8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19-8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19-8\sqrt{5}}{123}}\right)\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="84.545deg" role="button" tabindex="0" aria-label="Copy 84.545deg" title="Copy angle">\(\displaystyle \mathord{\sim}84.545^\circ\)</span></span></td>
+                    <td>\(\displaystyle \mathord{\sim}93.9\%\)</td>
+                    <td>Concurrent</td>
+                  </tr>
+                  <tr>
+                    <td align="right">23</td>
+                    <td align="right">12</td>
+                    <td align="right">NA</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_90_sweep.gif&width=75" alt="Icosahedron 90 sweep"></td>
+                    <td><span class="angle-exact">\(\displaystyle \{\)<span class="copy-angle" data-copy="arccos(sqr((19-8*sqr(5))/123))" role="button" tabindex="0" aria-label="Copy arccos(sqr((19-8*sqr(5))/123))" title="Copy angle">\(\displaystyle \cos^{-1}\!\left(\sqrt{\dfrac{19-8\sqrt{5}}{123}}\right)\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span>\(\displaystyle \}\)</span><span class="angle-degree">\(\displaystyle \{\)<span class="copy-angle" data-copy="84.545deg" role="button" tabindex="0" aria-label="Copy 84.545deg" title="Copy angle">\(\displaystyle \mathord{\sim}84.545^\circ\)</span>\(\displaystyle \lt \theta \lt\)<span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span>\(\displaystyle \}\)</span></td>
+                    <td>\(\displaystyle \left\{\mathord{\sim}93.9\% \lt s \lt 100\%\right\}\)</td>
+                    <td>NA</td>
+                  </tr>
+                  <tr>
+                    <td align="right">24</td>
+                    <td align="right">NA</td>
+                    <td align="right">12</td>
+                    <td><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Icosahedron_90.gif&width=75" alt="Icosahedron 90"></td>
+                    <td><span class="angle-exact"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90^\circ\)</span></span><span class="angle-degree"><span class="copy-angle" data-copy="90deg" role="button" tabindex="0" aria-label="Copy 90deg" title="Copy angle">\(\displaystyle 90.000^\circ\)</span></span></td>
+                    <td>\(\displaystyle 100\%\)</td>
+                    <td>Coincident</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p>These animations were created using a modified version of Jaap&#39;s &quot;<a href="https://www.jaapsch.net/puzzles/sphere.htm?sym=1&blue=150">Sphere</a>&quot; simulator.</p>
+        </article>
+        <footer class="page-footer">
+          <a href="../../index.html">← Preston Alden</a>
+        </footer>
+      </main>
+    </div>
+    <div class="copy-status" role="status" aria-live="polite"></div>
+  </body>
+  </html>
